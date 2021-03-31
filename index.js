@@ -3,6 +3,8 @@ const PORT = process.env.PORT || 8000;
 
 const { graphqlHTTP } = require("express-graphql");
 
+const db = require("./config/mongoose");
+
 const schema = require("./schema/schema");
 
 app.get("/", (req, res) => {
