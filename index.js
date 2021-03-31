@@ -1,8 +1,20 @@
 const app = require("express")();
 const PORT = process.env.PORT || 8000;
 
+const { graphqlHTTP } = require("express-graphql");
+
+const schema = require("./schema/schema");
+
 app.get("/", (req, res) => {
 	return res.json("Working!");
 });
 
-app.listen(PORT, () => console.log(`Server running at: ${PORT}`));
+app.use(
+	"/graphql",
+	graphqlHTTP({
+		schema,
+		graphiql: true,
+	})
+);
+
+app.listen(PORT, () => console.log("Now browse to localhost:4000/graphql"));
