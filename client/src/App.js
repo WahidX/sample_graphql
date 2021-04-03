@@ -12,16 +12,12 @@ const client = new ApolloClient({
 });
 
 function App(props) {
-	// useEffect(async () => {
-	// }, []);
-
 	return (
 		<ApolloProvider client={client}>
 			<div>
 				<h1>Book Author -- GraphQL</h1>
-				<BookList />
-				<AuthorList />
 				<AddBook />
+				<BookList />
 			</div>
 		</ApolloProvider>
 	);
