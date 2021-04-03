@@ -9,7 +9,7 @@ const getBooks = gql`
 			id
 			author {
 				name
-				id
+				age
 			}
 		}
 	}
@@ -25,6 +25,14 @@ function BookItem(props) {
 				<br />
 				{book.genre}
 				<br />
+				{book.author && (
+					<React.Fragment>
+						{book.author.name}
+						<br />
+						{book.author.age}
+						<br />
+					</React.Fragment>
+				)}
 			</div>
 		</li>
 	);
@@ -43,7 +51,6 @@ function BookList(props) {
 	return (
 		<div>
 			<h3>&nbsp; &nbsp; Books:</h3>
-
 			<ul>
 				{books.map((book) => (
 					<BookItem book={book} key={book.id} />
