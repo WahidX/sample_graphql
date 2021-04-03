@@ -7,7 +7,7 @@ function BookItem(props) {
 	const book = props.book;
 
 	return (
-		<li onClick={() => props.setSelected(book.id)}>
+		<li className="book-item" onClick={() => props.setSelected(book.id)}>
 			<div>
 				{book.name}
 				<br />
@@ -38,15 +38,13 @@ function BookList(props) {
 				id,
 			},
 		});
-		if (selected == id) setSelected(null);
+		if (selected === id) setSelected(null);
 	}
 
 	return (
-		<div>
-			<h3>Book Details:</h3>
-			<BookDetails bookid={selected} />
-			<h3>&nbsp; &nbsp; Books:</h3>
-			<ul>
+		<div id="books-container">
+			<ul id="list-container">
+				<h2>&nbsp; &nbsp; Books:</h2>
 				{books.map((book) => (
 					<React.Fragment>
 						<BookItem book={book} key={book.id} setSelected={setSelected} />
@@ -54,6 +52,8 @@ function BookList(props) {
 					</React.Fragment>
 				))}
 			</ul>
+
+			<BookDetails bookid={selected} />
 		</div>
 	);
 }

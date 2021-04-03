@@ -40,7 +40,7 @@ function AddBook(props) {
 	}
 
 	return (
-		<div>
+		<div className="add-book">
 			<h3>Add Book</h3>
 
 			<form onSubmit={submitHandle}>
@@ -61,7 +61,7 @@ function AddBook(props) {
 						{AuthorOptions(data)}
 					</select>
 				</div>
-				<button type="submit">+</button>
+				<button type="submit">Add Book</button>
 			</form>
 		</div>
 	);

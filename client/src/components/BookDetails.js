@@ -12,30 +12,37 @@ function BookDetails(props) {
 
 	const book = data && data.book;
 
-	if (!book) return "loading... ";
 	return (
-		<div>
-			<h1>{book.name}</h1>
+		<div id="book-details-container">
+			<h2>Book Details:</h2>
 
-			<p>Genre: {book.genre}</p>
-			<p>
-				Author: <br />
-				{book.author ? (
-					<div>
-						Name: {book.author.name} <br />
-						Age: {book.author.age}
-						<ul>
-							{book.author.books.map((book) => (
-								<li key={book.id}>
-									{book.name} + " - " + {book.genre}{" "}
-								</li>
-							))}
-						</ul>
-					</div>
-				) : (
-					"Not found!"
-				)}
-			</p>
+			{book && (
+				<React.Fragment>
+					<h1>{book.name}</h1>
+
+					<p>Genre: {book.genre}</p>
+					<p>
+						Author: <br />
+						{book.author ? (
+							<div>
+								Name: {book.author.name} <br />
+								Age: {book.author.age} <br />
+								<br />
+								All books by this author:
+								<ul>
+									{book.author.books.map((book) => (
+										<li key={book.id}>
+											{book.name} - {book.genre}{" "}
+										</li>
+									))}
+								</ul>
+							</div>
+						) : (
+							"Not found!"
+						)}
+					</p>
+				</React.Fragment>
+			)}
 		</div>
 	);
 }
