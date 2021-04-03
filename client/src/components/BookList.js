@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useQuery } from "@apollo/client";
-import { getBooks } from "../queries/queries";
+import { useMutation, useQuery } from "@apollo/client";
+import { getBooks, deleteBookMutation } from "../queries/queries";
 import BookDetails from "./BookDetails";
 
 function BookItem(props) {
@@ -13,14 +13,6 @@ function BookItem(props) {
 				<br />
 				{book.genre}
 				<br />
-				{book.author && (
-					<React.Fragment>
-						{book.author.name}
-						<br />
-						{book.author.age}
-						<br />
-					</React.Fragment>
-				)}
 			</div>
 		</li>
 	);
@@ -28,12 +20,26 @@ function BookItem(props) {
 
 function BookList(props) {
 	const { loading, error, data } = useQuery(getBooks);
+	const [deleteBook] = useMutation(deleteBookMutation, {
+		refetchQueries: [{ query: getBooks }],
+	});
+
 	const [selected, setSelected] = useState(null);
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error :(</p>;
 
 	let books = data.books;
+
+	function deleteBookHandle(id) {
+		console.log("delete: ", id);
+		deleteBook({
+			variables: {
+				id,
+			},
+		});
+		if (selected == id) setSelected(null);
+	}
 
 	return (
 		<div>
@@ -42,7 +48,10 @@ function BookList(props) {
 			<h3>&nbsp; &nbsp; Books:</h3>
 			<ul>
 				{books.map((book) => (
-					<BookItem book={book} key={book.id} setSelected={setSelected} />
+					<React.Fragment>
+						<BookItem book={book} key={book.id} setSelected={setSelected} />
+						<button onClick={() => deleteBookHandle(book.id)}>Delete</button>
+					</React.Fragment>
 				))}
 			</ul>
 		</div>

@@ -7,7 +7,6 @@ function AddBook(props) {
 	const [addBook] = useMutation(addBookMutation, {
 		refetchQueries: [{ query: getBooks }],
 	});
-	// console.log("add book arr: ", addBook);
 
 	const [bookName, setBookName] = useState("");
 	const [genre, setGenre] = useState("");
@@ -38,7 +37,6 @@ function AddBook(props) {
 			setGenre("");
 			setAuthorInput("");
 		} else console.log("Invalid Input");
-		console.log(bookName, genre, authorInput);
 	}
 
 	return (

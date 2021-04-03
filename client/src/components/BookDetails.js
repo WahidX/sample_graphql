@@ -10,9 +10,6 @@ function BookDetails(props) {
 		variables: { id: bookid },
 	});
 
-	console.log(bookid);
-	console.log(loading, error, data);
-
 	const book = data && data.book;
 
 	if (!book) return "loading... ";
