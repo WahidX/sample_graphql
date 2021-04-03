@@ -1,5 +1,5 @@
 body {
-	margin: 0;
+	margin: 50;
 	font-family: -apple-system, BlinkMacSystemFont, "Fira Sans", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Droid Sans", "Helvetica Neue",
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -8,4 +8,11 @@ body {
 
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+#root {
+	margin: 50px;
+	padding: 10px;
+	border: 2px solid bisque;
+	border-radius: 20px;
 }

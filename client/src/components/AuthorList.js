@@ -1,15 +1,6 @@
 import React from "react";
-import { useQuery, gql } from "@apollo/client";
-
-const getAuthors = gql`
-	query {
-		authors {
-			name
-			id
-			age
-		}
-	}
-`;
+import { useQuery } from "@apollo/client";
+import { getAuthors } from "../queries/queries";
 
 function AuthorItem(props) {
 	const author = props.author;
